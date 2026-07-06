@@ -92,7 +92,7 @@ def get_ai_analysis(api_key: str, transcript: str) -> str:
     client = Anthropic(api_key=api_key)
 
     response = client.messages.create(
-        model="claude-3-5-sonnet-20241022",
+        model="claude-sonnet-5",
         max_tokens=1024,
         temperature=0,  # Deterministic output is preferred for structured/financial extraction tasks
         system=SYSTEM_PROMPT,
