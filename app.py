@@ -94,7 +94,9 @@ def get_ai_analysis(api_key: str, transcript: str) -> str:
     response = client.messages.create(
         model="claude-sonnet-5",
         max_tokens=1024,
-        temperature=0,  # Deterministic output is preferred for structured/financial extraction tasks
+        # NOTE: `temperature` is deprecated/unsupported on this model and will
+        # raise a 400 invalid_request_error if passed. We rely on the strict
+        # system prompt + schema instructions for output consistency instead.
         system=SYSTEM_PROMPT,
         messages=[
             {
